@@ -1,0 +1,34 @@
+{% extends 'model-page.html' %}
+
+{% block content %}
+  <h2>Clientes</h2>
+
+  <a href="{% url 'customer:customer-create' %}">
+    <button class="btn btn-success" type="button" style="float: right; margin-bottom: 1em">Adicionar</button>
+  </a>
+
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Cidade</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">E-mail</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for customer in customer_list %}
+      <tr>
+        <td>{{ customer.get_full_name }}</td>
+        <td>{{ customer.city }}</td>
+        <td>{{ customer.get_full_phone_number }}</td>
+        <td>{{ customer.email }}</td>
+        <td><button class="btn btn-danger" type="button">Excluir</button></td>
+      </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock  %}
