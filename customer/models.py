@@ -7,7 +7,7 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
     birth_date = models.DateField()
-    area_code = models.CharField(max_length=3)
+    area_code = models.CharField(max_length=5)
     phone_number = models.CharField(max_length=9)
     country = models.CharField(max_length=30)
     state = models.CharField(max_length=30)
