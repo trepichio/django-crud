@@ -1,4 +1,5 @@
-from django.views.generic import ListView, CreateView
+from django.shortcuts import get_object_or_404
+from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse
 
 from .models import Customer
@@ -13,6 +14,21 @@ class CustomerListView(ListView):
 class CustomerCreateView(CreateView):
     template_name = "customer/customer.html"
     form_class = CustomerForm
+
+    def form_valid(self, form):
+      return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("customer:customer-list")
+
+class CustomerUpdateView(UpdateView):
+    model = Customer
+    template_name = "customer/customer.html"
+    form_class = CustomerForm
+
+    def get_object(self):
+        id = self.kwargs.get("id")
+        return get_object_or_404(Customer, id=id)
 
     def form_valid(self, form):
       return super().form_valid(form)
