@@ -4,13 +4,23 @@ from django.urls import reverse
 
 from .models import Customer
 from .forms import CustomerForm
-
+from django.db.models import Q
 
 class CustomerListView(ListView):
     template_name = "customer/customer_list.html"
     model = Customer
-    queryset = Customer.objects.all()
     paginate_by = 2
+
+    def get_queryset(self):
+        name = self.request.GET.get("name")
+        if name:
+            object_list = self.model.objects.filter(
+                Q(first_name__icontains=name) | Q(last_name__icontains=name)
+            )
+        else:
+            object_list = self.model.objects.all()
+        return object_list
+
 
 class CustomerCreateView(CreateView):
     template_name = "customer/customer.html"

@@ -3,11 +3,29 @@
 {% block content %}
   <h2>Clientes</h2>
 
-  <a href="{% url 'customer:customer-create' %}">
-    <button class="btn btn-success" type="button" style="float: right; margin-bottom: 1em">Adicionar</button>
-  </a>
+  <form class="form-inline mt-3">
+    <div class="form-group">
+      <input
+        class="form-control float-left"
+        type="search" name="name"
+        id=""
+        placeholder="Buscar por nome..."
+      >
+      <button
+        class="btn btn-primary ml-2"
+        type="submit"
+        value=""
+      >
+        Buscar
+      </button>
+    </div>
 
-  <table class="table table-bordered">
+    <a href="{% url 'customer:customer-create' %}" class="ml-auto">
+      <button class="btn btn-success" type="button">Adicionar</button>
+    </a>
+  </form>
+
+  <table class="table table-bordered mt-4">
   <thead>
     <tr>
       <th scope="col">Nome</th>
