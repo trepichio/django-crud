@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn Django_Crud;wsgi --log-file -
+web: gunicorn Django_Crud.wsgi --log-file -
